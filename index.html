@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="OpenAI Responses API로 대화를 이어가는 로컬 교육용 챗봇" />
+    <title>Responses Lab — 대화 실습</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Responses Lab 홈">
+          <span class="brand-mark" aria-hidden="true">r.</span>
+          <span>responses <span class="brand-light">lab</span></span>
+        </a>
+        <span class="environment-label">LOCAL PRACTICE</span>
+      </header>
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">A LITTLE SPACE FOR YOUR QUESTIONS</p>
+          <h1 id="page-title">질문에서 시작되는,<br />새로운 대화.</h1>
+          <p class="intro-description">궁금한 것을 물어보세요. 앞선 이야기를 기억하며 대화를 이어갑니다.</p>
+        </section>
+        <section class="chat-panel" aria-labelledby="chat-title">
+          <div class="chat-toolbar">
+            <div class="chat-heading">
+              <h2 id="chat-title">나의 대화</h2>
+              <span id="api-status" class="api-status" data-state="missing" role="status">키 미설정</span>
+            </div>
+            <button id="reset-button" class="reset-button" type="button">대화 초기화 <span aria-hidden="true">↺</span></button>
+          </div>
+          <p id="api-detail" class="api-detail"></p>
+          <div id="conversation" class="conversation">
+            <div id="empty-state" class="empty-state">
+              <div class="empty-symbol" aria-hidden="true">✳</div>
+              <h3>어떤 이야기를 나눠 볼까요?</h3>
+              <p>작은 궁금증도, 정리되지 않은 생각도 좋아요.<br />첫 메시지를 남기면 대화가 시작됩니다.</p>
+              <span class="empty-caption">YOUR NEXT IDEA STARTS HERE</span>
+            </div>
+            <div id="messages" class="messages" role="log" aria-label="대화 내역" aria-relevant="additions text"></div>
+          </div>
+          <div class="composer-area">
+            <p id="request-error" class="request-error" role="alert" hidden></p>
+            <form id="chat-form" class="composer">
+              <label class="visually-hidden" for="message-input">메시지</label>
+              <textarea id="message-input" name="message" rows="3" maxlength="6000" placeholder="궁금한 내용을 자유롭게 적어 주세요…" aria-describedby="composer-help" required></textarea>
+              <div class="composer-bottom">
+                <p id="composer-help"><kbd>Enter</kbd> 전송 <span>·</span> <kbd>Shift + Enter</kbd> 줄바꿈</p>
+                <button id="send-button" class="send-button" type="submit" disabled><span id="send-label">전송</span><span aria-hidden="true">↗</span></button>
+              </div>
+            </form>
+            <p class="conversation-note">대화는 현재 탭에서만 유지됩니다. 새로고침하거나 초기화하면 사라집니다.</p>
+          </div>
+        </section>
+        <aside class="security-note" aria-label="API 키 보안 안내">
+          <span class="security-icon" aria-hidden="true">!</span>
+          <p><strong>로컬 교육용 실습입니다.</strong> 브라우저에서는 API 키가 노출됩니다.<br class="desktop-break" /> 실제 키가 포함된 결과물을 공개 배포하지 마세요.</p>
+        </aside>
+      </main>
+      <footer class="site-footer"><span>BUILT TO LEARN, ONE MESSAGE AT A TIME.</span><span>OpenAI · <span id="model-name"></span></span></footer>
+    </div>
+    <template id="message-template">
+      <article class="message">
+        <span class="message-role"></span>
+        <p class="message-content"></p>
+      </article>
+    </template>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
